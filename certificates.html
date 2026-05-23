@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Certificates Showcase</title>
+
+<!-- GOOGLE FONT -->
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href=
+"https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet"
+href=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.bg-animation{
+    position:fixed;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.bg-animation span{
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+    45deg,
+    #00f0ff,
+    #7b2ff7);
+
+    opacity:0.15;
+
+    filter:blur(40px);
+
+    animation:float 12s infinite ease-in-out;
+}
+
+.bg-animation span:nth-child(1){
+    top:10%;
+    left:5%;
+}
+
+.bg-animation span:nth-child(2){
+    top:50%;
+    right:10%;
+}
+
+.bg-animation span:nth-child(3){
+    bottom:10%;
+    left:20%;
+}
+
+.bg-animation span:nth-child(4){
+    top:20%;
+    right:40%;
+}
+
+.bg-animation span:nth-child(5){
+    bottom:25%;
+    right:25%;
+}
+
+@keyframes float{
+
+    0%{
+        transform:
+        translateY(0px)
+        rotate(0deg);
+    }
+
+    50%{
+        transform:
+        translateY(-50px)
+        rotate(180deg);
+    }
+
+    100%{
+        transform:
+        translateY(0px)
+        rotate(360deg);
+    }
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+
+    width:100%;
+
+    padding:20px 40px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    backdrop-filter:blur(15px);
+
+    background:rgba(255,255,255,0.05);
+
+    position:fixed;
+
+    top:0;
+
+    z-index:1000;
+}
+
+.back-btn{
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:12px 25px;
+
+    border-radius:50px;
+
+    background:linear-gradient(
+    45deg,
+    #00f0ff,
+    #7b2ff7);
+
+    transition:0.4s;
+}
+
+.back-btn:hover{
+
+    transform:scale(1.08);
+}
+
+nav h1{
+
+    color:#00f0ff;
+
+    font-size:28px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    min-height:45vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding-top:120px;
+}
+
+.hero h2{
+
+    font-size:60px;
+
+    color:#00f0ff;
+
+    margin-bottom:20px;
+}
+
+.hero p{
+
+    max-width:700px;
+
+    line-height:1.8;
+
+    opacity:0.9;
+}
+
+/* =========================
+   CERTIFICATE SECTION
+========================= */
+
+.certificate-section{
+
+    width:90%;
+
+    margin:auto;
+
+    padding-bottom:100px;
+}
+
+.certificate-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:90px;
+}
+
+/* =========================
+   CERTIFICATE CARD
+========================= */
+
+.certificate-card{
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:500px;
+
+    overflow:hidden;
+
+    transition:1s;
+
+    cursor:pointer;
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.certificate-image{
+
+    position:relative;
+
+    width:min(420px,100%);
+
+    transition:1s;
+
+    z-index:2;
+}
+
+.certificate-image img{
+
+    width:100%;
+
+    border-radius:30px;
+
+    object-fit:cover;
+
+    box-shadow:
+    0 20px 40px
+    rgba(0,0,0,0.5);
+
+    transition:1s;
+}
+
+.certificate-title{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    font-size:30px;
+
+    color:#00f0ff;
+
+    transition:0.5s;
+}
+
+/* =========================
+   DETAILS
+========================= */
+
+.certificate-details{
+
+    position:absolute;
+
+    right:-650px;
+
+    width:450px;
+
+    opacity:0;
+
+    transition:1s;
+}
+
+.certificate-logo{
+
+    width:120px;
+    height:120px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.08);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+    0 0 40px
+    rgba(0,240,255,0.2);
+}
+
+.certificate-logo i{
+
+    font-size:55px;
+
+    color:#00f0ff;
+}
+
+.certificate-details h2{
+
+    margin-bottom:20px;
+
+    color:#00f0ff;
+
+    font-size:38px;
+}
+
+.certificate-details p{
+
+    line-height:1.9;
+
+    margin-bottom:30px;
+
+    opacity:0.9;
+}
+
+.certificate-buttons{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+}
+
+.certificate-buttons a{
+
+    padding:15px 32px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:linear-gradient(
+    45deg,
+    #00f0ff,
+    #7b2ff7);
+
+    transition:0.5s;
+
+    font-weight:500;
+}
+
+.certificate-buttons a:hover{
+
+    transform:
+    rotateX(10deg)
+    rotateY(10deg)
+    scale(1.08);
+}
+
+/* =========================
+   ACTIVE
+========================= */
+
+.certificate-card.active
+.certificate-image{
+
+    transform:translateX(-180px);
+}
+
+.certificate-card.active
+.certificate-details{
+
+    right:80px;
+
+    opacity:1;
+}
+
+.certificate-card.active
+.certificate-title{
+
+    opacity:0;
+}
+
+/* =========================
+   GLOW EFFECT
+========================= */
+
+.certificate-card::before{
+
+    content:'';
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    background:
+    rgba(0,240,255,0.12);
+
+    border-radius:50%;
+
+    filter:blur(60px);
+
+    animation:glowMove 6s infinite alternate;
+}
+
+@keyframes glowMove{
+
+    0%{
+        transform:
+        translate(-120px,-50px);
+    }
+
+    100%{
+        transform:
+        translate(120px,50px);
+    }
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    text-align:center;
+
+    padding:30px;
+}
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+
+    transform:translateY(80px);
+
+    opacity:0;
+
+    transition:1s;
+}
+
+.reveal.active{
+
+    transform:translateY(0);
+
+    opacity:1;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:1000px){
+
+    .certificate-card{
+
+        flex-direction:column;
+
+        min-height:auto;
+    }
+
+    .certificate-image{
+
+        width:100%;
+    }
+
+    .certificate-details{
+
+        position:relative;
+
+        width:100%;
+
+        right:0;
+
+        opacity:1;
+
+        margin-top:50px;
+
+        text-align:center;
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:center;
+    }
+
+    .certificate-card.active
+    .certificate-image{
+
+        transform:none;
+    }
+
+    .certificate-title{
+
+        opacity:1 !important;
+    }
+
+}
+
+@media(max-width:768px){
+
+    nav{
+
+        flex-direction:column;
+
+        gap:20px;
+    }
+
+    .hero h2{
+
+        font-size:42px;
+    }
+
+    .certificate-buttons{
+
+        flex-direction:column;
+    }
+
+    .certificate-buttons a{
+
+        width:100%;
+
+        text-align:center;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     BACKGROUND
+========================= -->
+
+<div class="bg-animation">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+
+    <a href="index.html"
+    class="back-btn">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Back
+
+    </a>
+
+    <h1>Certificates Showcase</h1>
+
+</nav>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <h2 class="reveal">
+
+        My Certificates
+
+    </h2>
+
+    <p class="reveal">
+
+        Collection of certifications,
+        achievements and learning milestones
+        earned through continuous learning.
+
+    </p>
+
+</section>
+
+<!-- =========================
+     CERTIFICATES
+========================= -->
+
+<section class="certificate-section">
+
+    <div class="certificate-grid">
+
+        <!-- =========================
+             PYTHON
+        ========================= -->
+
+        <div class="certificate-card reveal"
+        onclick="toggleCertificate(this)">
+
+            <div class="certificate-image">
+
+                <img src=
+                "assets/certificates/python.png"
+                alt="Python Certificate">
+
+                <h3 class="certificate-title">
+
+                    Python Programming
+
+                </h3>
+
+            </div>
+
+            <div class="certificate-details">
+
+                <div class="certificate-logo">
+
+                    <i class="fa-brands fa-python"></i>
+
+                </div>
+
+                <h2>Python Programming</h2>
+
+                <p>
+
+                    Learned Python programming fundamentals,
+                    problem solving and application
+                    development concepts.
+
+                </p>
+
+                <div class="certificate-buttons">
+
+                    <a href=
+                    "assets/certificates/python.png"
+                    target="_blank">
+
+                        View Certificate
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             MERN
+        ========================= -->
+
+        <div class="certificate-card reveal"
+        onclick="toggleCertificate(this)">
+
+            <div class="certificate-image">
+
+                <img src=
+                "assets/certificates/mern.png"
+                alt="MERN Certificate">
+
+                <h3 class="certificate-title">
+
+                    MERN Stack Development
+
+                </h3>
+
+            </div>
+
+            <div class="certificate-details">
+
+                <div class="certificate-logo">
+
+                    <i class="fa-solid fa-code"></i>
+
+                </div>
+
+                <h2>MERN Stack Development</h2>
+
+                <p>
+
+                    Built full stack development skills
+                    using MongoDB, Express.js,
+                    React and Node.js.
+
+                </p>
+
+                <div class="certificate-buttons">
+
+                    <a href=
+                    "assets/certificates/mern.png"
+                    target="_blank">
+
+                        View Certificate
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             MONGODB
+        ========================= -->
+
+        <div class="certificate-card reveal"
+        onclick="toggleCertificate(this)">
+
+            <div class="certificate-image">
+
+                <img src=
+                "assets/certificates/mongodb.png"
+                alt="MongoDB Certificate">
+
+                <h3 class="certificate-title">
+
+                    MongoDB Essentials
+
+                </h3>
+
+            </div>
+
+            <div class="certificate-details">
+
+                <div class="certificate-logo">
+
+                    <i class="fa-solid fa-database"></i>
+
+                </div>
+
+                <h2>MongoDB Essentials</h2>
+
+                <p>
+
+                    Learned NoSQL database management,
+                    MongoDB collections and
+                    data handling concepts.
+
+                </p>
+
+                <div class="certificate-buttons">
+
+                    <a href=
+                    "assets/certificates/mongodb.png"
+                    target="_blank">
+
+                        View Certificate
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             PALO ALTO
+        ========================= -->
+
+        <div class="certificate-card reveal"
+        onclick="toggleCertificate(this)">
+
+            <div class="certificate-image">
+
+                <img src=
+                "assets/certificates/paloalto.png"
+                alt="Palo Alto Certificate">
+
+                <h3 class="certificate-title">
+
+                    Palo Alto Cybersecurity
+
+                </h3>
+
+            </div>
+
+            <div class="certificate-details">
+
+                <div class="certificate-logo">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                </div>
+
+                <h2>Palo Alto Cybersecurity</h2>
+
+                <p>
+
+                    Learned cybersecurity basics,
+                    threat protection and
+                    modern network security concepts.
+
+                </p>
+
+                <div class="certificate-buttons">
+
+                    <a href=
+                    "assets/certificates/paloalto.png"
+                    target="_blank">
+
+                        View Certificate
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+
+        © 2026 RaviTeja |
+        Certificates Showcase
+
+    </p>
+
+</footer>
+
+<script>
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+window.addEventListener('scroll', reveal);
+
+function reveal(){
+
+    let reveals =
+    document.querySelectorAll('.reveal');
+
+    for(let i = 0; i < reveals.length; i++){
+
+        let windowHeight =
+        window.innerHeight;
+
+        let revealTop =
+        reveals[i].getBoundingClientRect().top;
+
+        let revealPoint = 120;
+
+        if(revealTop < windowHeight - revealPoint){
+
+            reveals[i].classList.add('active');
+
+        }
+
+    }
+
+}
+
+reveal();
+
+/* =========================
+   OPEN CERTIFICATE
+========================= */
+
+function toggleCertificate(card){
+
+    const allCards =
+    document.querySelectorAll('.certificate-card');
+
+    allCards.forEach(item => {
+
+        if(item !== card){
+
+            item.classList.remove('active');
+
+        }
+
+    });
+
+    card.classList.toggle('active');
+
+}
+
+/* =========================
+   3D EFFECT
+========================= */
+
+const cards =
+document.querySelectorAll('.certificate-card');
+
+cards.forEach(card => {
+
+    card.addEventListener('mousemove', (e) => {
+
+        let rect =
+        card.getBoundingClientRect();
+
+        let x =
+        e.clientX - rect.left;
+
+        let y =
+        e.clientY - rect.top;
+
+        let centerX =
+        rect.width / 2;
+
+        let centerY =
+        rect.height / 2;
+
+        let rotateX =
+        ((y - centerY) / 20);
+
+        let rotateY =
+        ((centerX - x) / 20);
+
+        card.style.transform = `
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+        `;
+
+    });
+
+    card.addEventListener('mouseleave', () => {
+
+        card.style.transform = `
+            rotateX(0deg)
+            rotateY(0deg)
+        `;
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

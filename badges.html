@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>3D Badges Showcase</title>
+
+<!-- GOOGLE FONT -->
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href=
+"https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet"
+href=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* =========================
+   ANIMATED BACKGROUND
+========================= */
+
+.bg-animation{
+    position:fixed;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.bg-animation span{
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+    45deg,
+    #00f0ff,
+    #7b2ff7);
+
+    opacity:0.15;
+
+    filter:blur(40px);
+
+    animation:float 12s infinite ease-in-out;
+}
+
+.bg-animation span:nth-child(1){
+    top:10%;
+    left:5%;
+}
+
+.bg-animation span:nth-child(2){
+    top:50%;
+    right:10%;
+}
+
+.bg-animation span:nth-child(3){
+    bottom:10%;
+    left:20%;
+}
+
+.bg-animation span:nth-child(4){
+    top:20%;
+    right:40%;
+}
+
+.bg-animation span:nth-child(5){
+    bottom:25%;
+    right:25%;
+}
+
+@keyframes float{
+
+    0%{
+        transform:
+        translateY(0px)
+        rotate(0deg);
+    }
+
+    50%{
+        transform:
+        translateY(-50px)
+        rotate(180deg);
+    }
+
+    100%{
+        transform:
+        translateY(0px)
+        rotate(360deg);
+    }
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+
+    width:100%;
+
+    padding:20px 40px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    backdrop-filter:blur(15px);
+
+    background:rgba(255,255,255,0.05);
+
+    position:fixed;
+
+    top:0;
+
+    z-index:1000;
+}
+
+.back-btn{
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:12px 25px;
+
+    border-radius:50px;
+
+    background:linear-gradient(
+    45deg,
+    #00f0ff,
+    #7b2ff7);
+
+    transition:0.4s;
+}
+
+.back-btn:hover{
+
+    transform:scale(1.08);
+}
+
+nav h1{
+
+    color:#00f0ff;
+
+    font-size:28px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    min-height:45vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding-top:120px;
+}
+
+.hero h2{
+
+    font-size:60px;
+
+    color:#00f0ff;
+
+    margin-bottom:20px;
+}
+
+.hero p{
+
+    max-width:700px;
+
+    line-height:1.8;
+
+    opacity:0.9;
+}
+
+/* =========================
+   BADGE SECTION
+========================= */
+
+.badge-section{
+
+    width:90%;
+
+    margin:auto;
+
+    padding-bottom:100px;
+}
+
+.badge-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:40px;
+}
+
+/* =========================
+   BADGE CARD
+========================= */
+
+.badge-card{
+
+    perspective:1200px;
+}
+
+.badge-inner{
+
+    position:relative;
+
+    width:100%;
+
+    height:380px;
+
+    transition:1s;
+
+    transform-style:preserve-3d;
+}
+
+.badge-card:hover .badge-inner{
+
+    transform:rotateY(180deg);
+}
+
+.badge-front,
+.badge-back{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    border-radius:30px;
+
+    backface-visibility:hidden;
+
+    background:rgba(255,255,255,0.08);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(20px);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+    overflow:hidden;
+}
+
+/* FRONT */
+
+.badge-front img{
+
+    width:170px;
+    height:170px;
+
+    object-fit:contain;
+
+    margin-bottom:25px;
+
+    transition:0.5s;
+}
+
+.badge-front h3{
+
+    font-size:28px;
+
+    color:#00f0ff;
+}
+
+/* BACK */
+
+.badge-back{
+
+    transform:rotateY(180deg);
+}
+
+.badge-back h3{
+
+    color:#00f0ff;
+
+    margin-bottom:20px;
+}
+
+.badge-back p{
+
+    text-align:center;
+
+    line-height:1.8;
+
+    margin-bottom:30px;
+}
+
+.badge-back a{
+
+    padding:14px 28px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:linear-gradient(
+    45deg,
+    #00f0ff,
+    #7b2ff7);
+
+    transition:0.4s;
+}
+
+.badge-back a:hover{
+
+    transform:
+    scale(1.08)
+    rotate(2deg);
+}
+
+/* =========================
+   GLOW EFFECT
+========================= */
+
+.badge-front::before,
+.badge-back::before{
+
+    content:'';
+
+    position:absolute;
+
+    width:150px;
+    height:150px;
+
+    background:rgba(0,240,255,0.2);
+
+    border-radius:50%;
+
+    filter:blur(40px);
+
+    animation:glowMove 6s infinite alternate;
+}
+
+@keyframes glowMove{
+
+    0%{
+        transform:
+        translate(-50px,-50px);
+    }
+
+    100%{
+        transform:
+        translate(50px,50px);
+    }
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    text-align:center;
+
+    padding:30px;
+}
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+
+    transform:translateY(80px);
+
+    opacity:0;
+
+    transition:1s;
+}
+
+.reveal.active{
+
+    transform:translateY(0);
+
+    opacity:1;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    nav{
+
+        flex-direction:column;
+
+        gap:20px;
+    }
+
+    .hero h2{
+
+        font-size:42px;
+    }
+
+    .badge-inner{
+
+        height:360px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     BACKGROUND
+========================= -->
+
+<div class="bg-animation">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+
+    <a href="index.html"
+    class="back-btn">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Back
+
+    </a>
+
+    <h1>Badges & Achievements</h1>
+
+</nav>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <h2 class="reveal">
+
+        My Professional Badges
+
+    </h2>
+
+    <p class="reveal">
+
+        Collection of achievements,
+        skill badges and certifications
+        earned through learning and projects.
+
+    </p>
+
+</section>
+
+<!-- =========================
+     BADGES
+========================= -->
+
+<section class="badge-section">
+
+    <div class="badge-grid">
+
+        <!-- BADGE 1 -->
+
+        <div class="badge-card reveal">
+
+            <div class="badge-inner">
+
+                <!-- FRONT -->
+
+                <div class="badge-front">
+
+                    <img src=
+                    "assets/badges/networking-basics.png"
+                    alt="img">
+
+                    <h3>celonis</h3>
+
+                </div>
+
+                <!-- BACK -->
+
+                <div class="badge-back">
+
+                    <h3>cisco</h3>
+
+                    <p>
+
+                        Networking basics,
+                        CISCO.
+
+                    </p><p>Issuing Date :
+12/27/2025</p>
+
+                    <a href=
+                    "https://www.credly.com/earner/earned/badge/d7ff734a-a94e-401f-b3d4-8026f32717a1"
+                    target="_blank">
+
+                        Verify Badge
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BADGE 2 -->
+
+        <div class="badge-card reveal">
+
+            <div class="badge-inner">
+
+                <div class="badge-front">
+
+                    <img src=
+                    "assets/badges/introduction-to-modern-ai.png"
+                    alt="Python Badge">
+
+                    <h3>Cisco</h3>
+
+                </div>
+
+                <div class="badge-back">
+
+                    <h3>Cisco</h3>
+
+                    <p>
+
+                        Introduction to Modern AI,
+                        Cisco.
+
+                    </p><p>Issuing Date :
+12/25/2025</p>
+
+                    <a href=
+                    "https://www.credly.com/earner/earned/badge/008abcd9-67b9-4f07-ac9c-633f1842b176"
+                    target="_blank">
+
+                        Verify Badge
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BADGE 3 -->
+
+        <div class="badge-card reveal">
+
+            <div class="badge-inner">
+
+                <div class="badge-front">
+
+                    <img src=
+                    "assets/badges/academic-process-mining-fundamentals.png"
+                    alt="Web Badge">
+
+                    <h3>Celonis</h3>
+
+                </div>
+
+                <div class="badge-back">
+
+                    <h3>Celonis</h3>
+
+                    <p>
+
+                        academic-process-mining-fundamentals,
+			Celonis.
+
+                    </p><p>Issuing Date :
+8/31/2024</p>
+
+                    <a href=
+                    "https://www.credly.com/earner/earned/badge/e2e0d913-3e1e-4e7f-8aba-30811d6ba09a"
+                    target="_blank">
+
+                        Verify Badge
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BADGE 4 -->
+
+        <div class="badge-card reveal">
+
+            <div class="badge-inner">
+
+                <div class="badge-front">
+
+                    <img src=
+                    "assets/badges/data-analytics-essentials.png"
+                    alt="Flutter Badge">
+
+                    <h3>Cisco</h3>
+
+                </div>
+
+                <div class="badge-back">
+
+                    <h3>Cisco</h3>
+
+                    <p>
+
+                        Data Analytics Essentials
+                        Cisco.
+
+                    </p><p>Issuing Date :
+10/11/2025</p>
+
+                    <a href=
+                    "https://your-verification-link.com"
+                    target="_blank">
+
+                        Verify Badge
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- BADGE 5 -->
+
+        <div class="badge-card reveal">
+
+            <div class="badge-inner">
+
+                <div class="badge-front">
+
+                    <img src=
+                    "assets/badges/celonis-foundations.png"
+                    alt="Python Badge">
+
+                    <h3>Celonis</h3>
+
+                </div>
+
+                <div class="badge-back">
+
+                    <h3>Celonis</h3>
+
+                    <p>
+
+                        Celonis-foundationsI,
+                        Celonis.
+
+                    </p><p>Issuing Date :
+18/31/2024</p>
+
+                    <a href=
+                    "https://www.credly.com/earner/earned/badge/29c67ec0-901c-4f82-bb70-6f9656cc3cec"
+                    target="_blank">
+
+                        Verify Badge
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BADGE 6 -->
+
+        <div class="badge-card reveal">
+
+            <div class="badge-inner">
+
+                <div class="badge-front">
+
+                    <img src=
+                    "assets/badges/red-hat-system-administration.png"
+                    alt="Web Badge">
+
+                    <h3>RedHat</h3>
+
+                </div>
+
+                <div class="badge-back">
+
+                    <h3>RedHat</h3>
+
+                    <p>
+
+                        Red Hat System Administration,
+			RedHat.
+
+                    </p><p>Issuing Date :
+9/23/2025</p>
+
+                    <a href=
+                    "https://www.credly.com/earner/earned/badge/3341a6e8-a3d5-46e9-bbf9-1cfe7f3ab970"
+                    target="_blank">
+
+                        Verify Badge
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BADGE 7 -->
+
+        <div class="badge-card reveal">
+
+            <div class="badge-inner">
+
+                <div class="badge-front">
+
+                    <img src=
+                    "assets/badges/introduction-to-red-hat-openshift-applications.png"
+                    alt="Flutter Badge">
+
+                    <h3>RedHat</h3>
+
+                </div>
+
+                <div class="badge-back">
+
+                    <h3>RedHat</h3>
+
+                    <p>
+
+                        Introduction to Red Hat OpenShift Applications
+                        RedHat.
+
+                    </p><p>Issuing Date :
+110/20/2025</p>
+
+                    <a href=
+                    "https://www.credly.com/earner/earned/badge/1e668845-db65-44ee-a9cd-301c83166937"
+                    target="_blank">
+
+                        Verify Badge
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+<!-- BADGE 8 -->
+
+        <div class="badge-card reveal">
+
+            <div class="badge-inner">
+
+                <div class="badge-front">
+
+                    <img src=
+                    "assets/badges/python-programming-with-red-hat.png"
+                    alt="Flutter Badge">
+
+                    <h3>RedHat</h3>
+
+                </div>
+
+                <div class="badge-back">
+
+                    <h3>RedHat</h3>
+
+                    <p>
+
+                        python-programming-with-red-hat
+                        RedHat.
+
+                    </p><p>Issuing Date :
+1/7/2026</p>
+
+                    <a href=
+                    "https://www.credly.com/earner/earned/badge/e56e362d-e63d-42b0-a2a6-06cef0dfbd71"
+                    target="_blank">
+
+                        Verify Badge
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+
+        © 2026 RaviTeja |
+        Badges Showcase
+
+    </p>
+
+</footer>
+
+<script>
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+window.addEventListener('scroll', reveal);
+
+function reveal(){
+
+    let reveals =
+    document.querySelectorAll('.reveal');
+
+    for(let i = 0; i < reveals.length; i++){
+
+        let windowHeight =
+        window.innerHeight;
+
+        let revealTop =
+        reveals[i].getBoundingClientRect().top;
+
+        let revealPoint = 120;
+
+        if(revealTop < windowHeight - revealPoint){
+
+            reveals[i].classList.add('active');
+
+        }
+
+    }
+
+}
+
+reveal();
+
+/* =========================
+   3D MOUSE EFFECT
+========================= */
+
+const cards =
+document.querySelectorAll('.badge-card');
+
+cards.forEach(card => {
+
+    card.addEventListener('mousemove', (e) => {
+
+        let rect =
+        card.getBoundingClientRect();
+
+        let x =
+        e.clientX - rect.left;
+
+        let y =
+        e.clientY - rect.top;
+
+        let centerX =
+        rect.width / 2;
+
+        let centerY =
+        rect.height / 2;
+
+        let rotateX =
+        ((y - centerY) / 18);
+
+        let rotateY =
+        ((centerX - x) / 18);
+
+        card.style.transform = `
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+        `;
+
+    });
+
+    card.addEventListener('mouseleave', () => {
+
+        card.style.transform = `
+            rotateX(0deg)
+            rotateY(0deg)
+        `;
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
