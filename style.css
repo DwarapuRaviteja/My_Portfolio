@@ -446,12 +446,13 @@ section h2{
 
     border-radius:40px;
 
-    background:linear-gradient(
-    45deg,
-    #00f0ff,
-    #7b2ff7);
+    background:#111827;
 
-    transition:0.4s;
+    border:1px solid #2a2a2a;
+
+    color:white;
+
+    transition:0.3s;
 }
 
 .skill:hover{
