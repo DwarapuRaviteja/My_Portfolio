@@ -90,23 +90,68 @@ cards.forEach(card => {
 
 function toggleProject(project){
 
-    const allProjects =
-    document.querySelectorAll('.project-card');
+    // Mobile & Tablet only
+    if(window.innerWidth <= 1100){
 
-    allProjects.forEach(item => {
+        const allProjects =
+        document.querySelectorAll('.project-card');
 
-        if(item !== project){
+        allProjects.forEach(item => {
 
-            item.classList.remove('active');
+            if(item !== project){
 
-        }
+                item.classList.remove('active');
 
-    });
+            }
 
-    project.classList.toggle('active');
+        });
+
+        project.classList.toggle('active');
+
+    }else{
+
+        // Desktop behavior remains the same
+        const allProjects =
+        document.querySelectorAll('.project-card');
+
+        allProjects.forEach(item => {
+
+            if(item !== project){
+
+                item.classList.remove('active');
+
+            }
+
+        });
+
+        project.classList.toggle('active');
+
+    }
 
 }
 
+/* =========================
+   CLOSE PROJECT ON OUTSIDE CLICK
+========================= */
+
+document.addEventListener('click', function(e){
+
+    if(window.innerWidth <= 1100){
+
+        if(!e.target.closest('.project-card')){
+
+            document.querySelectorAll('.project-card')
+            .forEach(card=>{
+
+                card.classList.remove('active');
+
+            });
+
+        }
+
+    }
+
+});
 /* =========================
    ACHIEVEMENT 3D EFFECT
 ========================= */

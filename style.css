@@ -498,7 +498,7 @@ section h2{
 
     position:relative;
 
-    width:500px;
+    width:250px;
 
     transition:1s;
 
@@ -599,21 +599,25 @@ section h2{
 
 /* ACTIVE PROJECT */
 
-.project-card.active .project-image{
+@media (min-width:1101px){
 
-    transform:translateX(-250px);
-}
+    .project-card.active .project-details{
 
-.project-card.active .project-details{
+        right:80px;
 
-    right:80px;
+        opacity:1;
+    }
 
-    opacity:1;
-}
+    .project-card.active .project-image{
 
-.project-card.active .project-title{
+        transform:translateX(-250px);
+    }
 
-    opacity:0;
+    .project-card.active .project-title{
+
+        opacity:0;
+    }
+
 }
 
 /* =========================
@@ -736,48 +740,73 @@ footer{
    TABLET
 ========================= */
 
-@media(max-width:1100px){
+@media (max-width:1100px){
 
     nav{
-
         padding:18px 20px;
     }
 
     nav ul{
-
         gap:10px;
     }
 
     nav ul li a{
-
         font-size:14px;
-
         padding:8px 12px;
     }
 
     .hero{
-
         flex-direction:column;
-
         text-align:center;
     }
 
     .hero-right h2{
-
         font-size:60px;
     }
+
+    /* =========================
+       PROJECTS
+    ========================= */
 
     .project-card{
 
         flex-direction:column;
 
+        align-items:center;
+
         min-height:auto;
+
+        cursor:pointer;
+
+        padding-bottom:20px;
     }
 
     .project-image{
 
-        width:200px;
+        width:220px;
+
+        margin:auto;
+
+        transition:.4s;
     }
+
+    .project-image img{
+
+        width:100%;
+
+        border-radius:20px;
+    }
+
+    .project-title{
+
+        margin-top:15px;
+
+        font-size:22px;
+
+        opacity:1 !important;
+    }
+
+    /* Hide details initially */
 
     .project-details{
 
@@ -787,29 +816,68 @@ footer{
 
         width:100%;
 
-        opacity:1;
+        max-height:0;
 
-        margin-top:40px;
+        overflow:hidden;
+
+        opacity:0;
+
+        margin-top:0;
 
         text-align:center;
+
+        transition:
+        max-height .5s ease,
+        opacity .4s ease,
+        margin-top .4s ease;
     }
+
+    /* Open on click */
+
+    .project-card.active .project-details{
+
+        max-height:700px;
+
+        opacity:1;
+
+        margin-top:25px;
+    }
+
+    /* Disable desktop animation */
 
     .project-card.active .project-image{
 
         transform:none;
     }
 
-    .project-title{
+    /* Hide duplicate title */
 
-        opacity:1 !important;
+    .project-details h2{
+
+        display:none;
+    }
+
+    .project-buttons{
+
+        justify-content:center;
+
+        gap:15px;
+
+        margin-top:20px;
+    }
+
+    .project-buttons a{
+
+        padding:12px 25px;
     }
 }
+
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:768px){
+@media (max-width:768px){
 
     nav{
 
@@ -836,8 +904,7 @@ footer{
 
     .hero{
 
-        padding:
-        180px 20px 80px;
+        padding:180px 20px 80px;
 
         gap:40px;
     }
@@ -856,7 +923,7 @@ footer{
 
         width:94%;
 
-        padding:35px 25px;
+        padding:35px 20px;
     }
 
     section h2{
@@ -871,17 +938,51 @@ footer{
         grid-template-columns:1fr;
     }
 
+    /* =========================
+       PROJECTS
+    ========================= */
+
+    .project-image{
+
+        width:180px;
+    }
+
+    .project-title{
+
+        font-size:20px;
+    }
+
+    .project-details{
+
+        font-size:15px;
+    }
+
+    .project-details p{
+
+        line-height:1.8;
+    }
+
     .project-buttons{
 
         flex-direction:column;
+
+        align-items:center;
+
+        gap:12px;
     }
 
     .project-buttons a{
 
         width:100%;
 
+        max-width:260px;
+
         text-align:center;
     }
+
+    /* =========================
+       ACHIEVEMENTS
+    ========================= */
 
     .achievement-box{
 
@@ -897,6 +998,10 @@ footer{
         font-size:70px;
     }
 
+    /* =========================
+       CONTACT
+    ========================= */
+
     .contact-box{
 
         text-align:center;
@@ -906,4 +1011,5 @@ footer{
 
         font-size:14px;
     }
+
 }
