@@ -60,21 +60,15 @@ body{
 
 .bg-animation span{
     position:absolute;
-
     width:300px;
     height:300px;
-
     border-radius:50%;
-
     background:linear-gradient(
     45deg,
     #00f0ff,
     #7b2ff7);
-
     opacity:0.15;
-
     filter:blur(40px);
-
     animation:float 12s infinite ease-in-out;
 }
 
@@ -104,23 +98,14 @@ body{
 }
 
 @keyframes float{
-
     0%{
-        transform:
-        translateY(0px)
-        rotate(0deg);
+        transform:translateY(0px) rotate(0deg);
     }
-
     50%{
-        transform:
-        translateY(-50px)
-        rotate(180deg);
+        transform:translateY(-50px) rotate(180deg);
     }
-
     100%{
-        transform:
-        translateY(0px)
-        rotate(360deg);
+        transform:translateY(0px) rotate(360deg);
     }
 }
 
@@ -129,55 +114,36 @@ body{
 ========================= */
 
 nav{
-
     width:100%;
-
     padding:20px 40px;
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     backdrop-filter:blur(15px);
-
     background:rgba(255,255,255,0.05);
-
     position:fixed;
-
     top:0;
-
     z-index:1000;
 }
 
 .back-btn{
-
     color:white;
-
     text-decoration:none;
-
     padding:12px 25px;
-
     border-radius:50px;
-
     background:linear-gradient(
     45deg,
     #00f0ff,
     #7b2ff7);
-
     transition:0.4s;
 }
 
 .back-btn:hover{
-
     transform:scale(1.08);
 }
 
 nav h1{
-
     color:#00f0ff;
-
     font-size:28px;
 }
 
@@ -186,38 +152,26 @@ nav h1{
 ========================= */
 
 .hero{
-
-    min-height:45vh;
-
+    min-height:40vh;
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
-
     align-items:center;
-
     text-align:center;
-
     padding-top:120px;
 }
 
 .hero h2{
-
-    font-size:60px;
-
+    font-size:50px;
     color:#00f0ff;
-
-    margin-bottom:20px;
+    margin-bottom:15px;
 }
 
 .hero p{
-
     max-width:700px;
-
     line-height:1.8;
-
     opacity:0.9;
+    padding: 0 20px;
 }
 
 /* =========================
@@ -225,87 +179,60 @@ nav h1{
 ========================= */
 
 .certificate-section{
-
-    width:90%;
-
+    width:85%;
+    max-width:1200px;
     margin:auto;
-
     padding-bottom:100px;
 }
 
 .certificate-grid{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:90px;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap:40px;
 }
 
 /* =========================
-   CERTIFICATE CARD
+   CERTIFICATE CARD (Clean & Simple)
 ========================= */
 
 .certificate-card{
-
-    position:relative;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    min-height:500px;
-
+    background:rgba(255, 255, 255, 0.03);
+    border:1px solid rgba(255, 255, 255, 0.1);
+    border-radius:24px;
     overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
 
-    transition:1s;
-
-    cursor:pointer;
+.certificate-card:hover{
+    transform: translateY(-8px);
+    border-color: rgba(0, 240, 255, 0.4);
+    box-shadow: 0 15px 40px rgba(0,240,255,0.15);
 }
 
 /* =========================
-   IMAGE
+   IMAGE WRAPPER
 ========================= */
 
 .certificate-image{
-
+    width:100%;
+    height:220px;
+    overflow:hidden;
     position:relative;
-
-    width:min(420px,100%);
-
-    transition:1s;
-
-    z-index:2;
 }
 
 .certificate-image img{
-
     width:100%;
-
-    border-radius:30px;
-
+    height:100%;
     object-fit:cover;
-
-    box-shadow:
-    0 20px 40px
-    rgba(0,0,0,0.5);
-
-    transition:1s;
+    transition: transform 0.5s ease;
 }
 
-.certificate-title{
-
-    text-align:center;
-
-    margin-top:25px;
-
-    font-size:30px;
-
-    color:#00f0ff;
-
-    transition:0.5s;
+.certificate-card:hover .certificate-image img{
+    transform: scale(1.05);
 }
 
 /* =========================
@@ -313,164 +240,68 @@ nav h1{
 ========================= */
 
 .certificate-details{
-
-    position:absolute;
-
-    right:-650px;
-
-    width:450px;
-
-    opacity:0;
-
-    transition:1s;
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    flex-grow:1;
 }
 
 .certificate-logo{
-
-    width:120px;
-    height:120px;
-
+    width:60px;
+    height:60px;
     border-radius:50%;
-
-    background:rgba(255,255,255,0.08);
-
-    border:1px solid rgba(255,255,255,0.15);
-
+    background:rgba(0,240,255,0.08);
+    border:1px solid rgba(0,240,255,0.2);
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
-    margin-bottom:25px;
-
-    backdrop-filter:blur(15px);
-
-    box-shadow:
-    0 0 40px
-    rgba(0,240,255,0.2);
+    margin-bottom:15px;
 }
 
 .certificate-logo i{
-
-    font-size:55px;
-
+    font-size:26px;
     color:#00f0ff;
 }
 
 .certificate-details h2{
-
-    margin-bottom:20px;
-
+    font-size:22px;
     color:#00f0ff;
-
-    font-size:38px;
+    margin-bottom:12px;
 }
 
 .certificate-details p{
-
-    line-height:1.9;
-
-    margin-bottom:30px;
-
-    opacity:0.9;
+    font-size:14px;
+    line-height:1.7;
+    opacity:0.85;
+    margin-bottom:20px;
+    flex-grow:1;
 }
 
 .certificate-buttons{
-
     display:flex;
-
-    gap:20px;
-
-    flex-wrap:wrap;
+    gap:15px;
 }
 
 .certificate-buttons a{
-
-    padding:15px 32px;
-
+    display:inline-block;
+    width:100%;
+    padding:12px 20px;
     border-radius:50px;
-
     text-decoration:none;
-
+    text-align:center;
     color:white;
-
     background:linear-gradient(
     45deg,
     #00f0ff,
     #7b2ff7);
-
-    transition:0.5s;
-
+    transition:0.3s;
     font-weight:500;
+    font-size:14px;
 }
 
 .certificate-buttons a:hover{
-
-    transform:
-    rotateX(10deg)
-    rotateY(10deg)
-    scale(1.08);
-}
-
-/* =========================
-   ACTIVE
-========================= */
-
-.certificate-card.active
-.certificate-image{
-
-    transform:translateX(-180px);
-}
-
-.certificate-card.active
-.certificate-details{
-
-    right:80px;
-
-    opacity:1;
-}
-
-.certificate-card.active
-.certificate-title{
-
-    opacity:0;
-}
-
-/* =========================
-   GLOW EFFECT
-========================= */
-
-.certificate-card::before{
-
-    content:'';
-
-    position:absolute;
-
-    width:250px;
-    height:250px;
-
-    background:
-    rgba(0,240,255,0.12);
-
-    border-radius:50%;
-
-    filter:blur(60px);
-
-    animation:glowMove 6s infinite alternate;
-}
-
-@keyframes glowMove{
-
-    0%{
-        transform:
-        translate(-120px,-50px);
-    }
-
-    100%{
-        transform:
-        translate(120px,50px);
-    }
+    opacity: 0.9;
+    transform: scale(1.02);
 }
 
 /* =========================
@@ -478,110 +309,45 @@ nav h1{
 ========================= */
 
 footer{
-
     text-align:center;
-
     padding:30px;
+    opacity:0.7;
+    font-size:14px;
 }
 
 /* =========================
-   REVEAL
+   REVEAL ANIMATION
 ========================= */
 
 .reveal{
-
-    transform:translateY(80px);
-
+    transform:translateY(40px);
     opacity:0;
-
-    transition:1s;
+    transition:1s ease;
 }
 
 .reveal.active{
-
     transform:translateY(0);
-
     opacity:1;
 }
 
 /* =========================
-   MOBILE
+   RESPONSIVE
 ========================= */
 
-@media(max-width:1000px){
-
-    .certificate-card{
-
-        flex-direction:column;
-
-        min-height:auto;
-    }
-
-    .certificate-image{
-
-        width:100%;
-    }
-
-    .certificate-details{
-
-        position:relative;
-
-        width:100%;
-
-        right:0;
-
-        opacity:1;
-
-        margin-top:50px;
-
-        text-align:center;
-
-        display:flex;
-
-        flex-direction:column;
-
-        align-items:center;
-    }
-
-    .certificate-card.active
-    .certificate-image{
-
-        transform:none;
-    }
-
-    .certificate-title{
-
-        opacity:1 !important;
-    }
-
-}
-
 @media(max-width:768px){
-
     nav{
-
         flex-direction:column;
-
-        gap:20px;
+        gap:15px;
+        padding:15px 20px;
     }
 
     .hero h2{
-
-        font-size:42px;
+        font-size:36px;
     }
 
-    .certificate-buttons{
-
-        flex-direction:column;
+    .certificate-section{
+        width:90%;
     }
-
-    .certificate-buttons a{
-
-        width:100%;
-
-        text-align:center;
-    }
-
 }
 
 </style>
@@ -595,13 +361,11 @@ footer{
 ========================= -->
 
 <div class="bg-animation">
-
     <span></span>
     <span></span>
     <span></span>
     <span></span>
     <span></span>
-
 </div>
 
 <!-- =========================
@@ -609,18 +373,10 @@ footer{
 ========================= -->
 
 <nav>
-
-    <a href="index.html"
-    class="back-btn">
-
-        <i class="fa-solid fa-arrow-left"></i>
-
-        Back
-
+    <a href="index.html" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i> Back
     </a>
-
     <h1>Certificates Showcase</h1>
-
 </nav>
 
 <!-- =========================
@@ -628,21 +384,10 @@ footer{
 ========================= -->
 
 <section class="hero">
-
-    <h2 class="reveal">
-
-        My Certificates
-
-    </h2>
-
+    <h2 class="reveal">My Certificates</h2>
     <p class="reveal">
-
-        Collection of certifications,
-        achievements and learning milestones
-        earned through continuous learning.
-
+        Collection of certifications, achievements and learning milestones earned through continuous learning and internships.
     </p>
-
 </section>
 
 <!-- =========================
@@ -650,231 +395,131 @@ footer{
 ========================= -->
 
 <section class="certificate-section">
-
     <div class="certificate-grid">
 
         <!-- =========================
-             PYTHON
+             SERVICENOW
         ========================= -->
 
-        <div class="certificate-card reveal"
-        onclick="toggleCertificate(this)">
-
+        <div class="certificate-card reveal">
             <div class="certificate-image">
-
-                <img src=
-                "assets/certificates/python.png"
-                alt="Python Certificate">
-
-                <h3 class="certificate-title">
-
-                    Python Programming
-
-                </h3>
-
+                <img src="assets/certificates/servicenow.png" alt="ServiceNow Certificate">
             </div>
-
             <div class="certificate-details">
-
                 <div class="certificate-logo">
-
-                    <i class="fa-brands fa-python"></i>
-
+                    <i class="fa-solid fa-server"></i>
                 </div>
-
-                <h2>Python Programming</h2>
-
-                <p>
-
-                    Learned Python programming fundamentals,
-                    problem solving and application
-                    development concepts.
-
-                </p>
-
+                <h2>ServiceNow System Administrator</h2>
+                <p>Completed a 2-month (120 hours) short-term virtual internship organized by SmartBridge in collaboration with APSCHE, focusing on ServiceNow administration and workflow management[cite: 11].</p>
                 <div class="certificate-buttons">
-
-                    <a href=
-                    "assets/certificates/python.png"
-                    target="_blank">
-
-                        View Certificate
-
-                    </a>
-
+                    <a href="assets/certificates/servicenow.png" target="_blank">View Certificate</a>
                 </div>
-
             </div>
-
         </div>
 
-        <!-- =========================
-             MERN
-        ========================= -->
-
-        <div class="certificate-card reveal"
-        onclick="toggleCertificate(this)">
-
+        <!-- 1. BLUE PRISM -->
+        <div class="certificate-card reveal">
             <div class="certificate-image">
-
-                <img src=
-                "assets/certificates/mern.png"
-                alt="MERN Certificate">
-
-                <h3 class="certificate-title">
-
-                    MERN Stack Development
-
-                </h3>
-
+                <img src="assets/certificates/blueprism.png" alt="Blue Prism Certificate">
             </div>
-
             <div class="certificate-details">
-
                 <div class="certificate-logo">
-
-                    <i class="fa-solid fa-code"></i>
-
+                    <i class="fa-solid fa-robot"></i>
                 </div>
-
-                <h2>MERN Stack Development</h2>
-
-                <p>
-
-                    Built full stack development skills
-                    using MongoDB, Express.js,
-                    React and Node.js.
-
-                </p>
-
+                <h2>Intelligent Automation</h2>
+                <p>A training program focused on Robotic Process Automation (RPA) and intelligent automation concepts, building software robots using Blue Prism[cite: 1].</p>
                 <div class="certificate-buttons">
-
-                    <a href=
-                    "assets/certificates/mern.png"
-                    target="_blank">
-
-                        View Certificate
-
-                    </a>
-
+                    <a href="assets/certificates/blueprism.png" target="_blank">View Certificate</a>
                 </div>
-
             </div>
-
         </div>
 
-        <!-- =========================
-             MONGODB
-        ========================= -->
-
-        <div class="certificate-card reveal"
-        onclick="toggleCertificate(this)">
-
+        <!-- 2. CELONIS -->
+        <div class="certificate-card reveal">
             <div class="certificate-image">
-
-                <img src=
-                "assets/certificates/mongodb.png"
-                alt="MongoDB Certificate">
-
-                <h3 class="certificate-title">
-
-                    MongoDB Essentials
-
-                </h3>
-
+                <img src="assets/certificates/celonis.png" alt="Celonis Certificate">
             </div>
-
             <div class="certificate-details">
-
                 <div class="certificate-logo">
-
-                    <i class="fa-solid fa-database"></i>
-
+                    <i class="fa-solid fa-chart-line"></i>
                 </div>
-
-                <h2>MongoDB Essentials</h2>
-
-                <p>
-
-                    Learned NoSQL database management,
-                    MongoDB collections and
-                    data handling concepts.
-
-                </p>
-
+                <h2>Process Mining</h2>
+                <p>Focuses on process mining technology, teaching how to analyze, visualize, and optimize operational business processes using event log data[cite: 2].</p>
                 <div class="certificate-buttons">
-
-                    <a href=
-                    "assets/certificates/mongodb.png"
-                    target="_blank">
-
-                        View Certificate
-
-                    </a>
-
+                    <a href="assets/certificates/celonis.png" target="_blank">View Certificate</a>
                 </div>
-
             </div>
-
         </div>
 
-        <!-- =========================
-             PALO ALTO
-        ========================= -->
-
-        <div class="certificate-card reveal"
-        onclick="toggleCertificate(this)">
-
+        <!-- 3. GOOGLE AI-ML -->
+        <div class="certificate-card reveal">
             <div class="certificate-image">
-
-                <img src=
-                "assets/certificates/paloalto.png"
-                alt="Palo Alto Certificate">
-
-                <h3 class="certificate-title">
-
-                    Palo Alto Cybersecurity
-
-                </h3>
-
+                <img src="assets/certificates/google.png" alt="Google AI-ML Certificate">
             </div>
-
             <div class="certificate-details">
-
                 <div class="certificate-logo">
-
-                    <i class="fa-solid fa-shield-halved"></i>
-
+                    <i class="fa-solid fa-brain"></i>
                 </div>
-
-                <h2>Palo Alto Cybersecurity</h2>
-
-                <p>
-
-                    Learned cybersecurity basics,
-                    threat protection and
-                    modern network security concepts.
-
-                </p>
-
+                <h2>AI-ML Virtual Internship</h2>
+                <p>Covers foundational and intermediate concepts in Artificial Intelligence and Machine Learning, focusing on building and training ML models[cite: 3].</p>
                 <div class="certificate-buttons">
-
-                    <a href=
-                    "assets/certificates/paloalto.png"
-                    target="_blank">
-
-                        View Certificate
-
-                    </a>
-
+                    <a href="assets/certificates/google.png" target="_blank">View Certificate</a>
                 </div>
-
             </div>
+        </div>
 
+        <!-- 4. GOOGLE ANDROID -->
+        <div class="certificate-card reveal">
+            <div class="certificate-image">
+                <img src="assets/certificates/google1.png" alt="Android Developer Certificate">
+            </div>
+            <div class="certificate-details">
+                <div class="certificate-logo">
+                    <i class="fa-brands fa-android"></i>
+                </div>
+                <h2>Android Developer</h2>
+                <p>Designed to build practical mobile application development skills, focusing on creating functional Android applications using modern tools[cite: 4].</p>
+                <div class="certificate-buttons">
+                    <a href="assets/certificates/google1.png" target="_blank">View Certificate</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. JUNIPER NETWORKS -->
+        <div class="certificate-card reveal">
+            <div class="certificate-image">
+                <img src="assets/certificates/juniper.png" alt="Juniper Certificate">
+            </div>
+            <div class="certificate-details">
+                <div class="certificate-logo">
+                    <i class="fa-solid fa-cloud"></i>
+                </div>
+                <h2>Networking Cloud</h2>
+                <p>Centers on cloud networking architectures, network automation principles, and infrastructure management using Juniper technologies[cite: 5].</p>
+                <div class="certificate-buttons">
+                    <a href="assets/certificates/juniper.png" target="_blank">View Certificate</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. CISCO DATA ANALYTICS -->
+        <div class="certificate-card reveal">
+            <div class="certificate-image">
+                <img src="assets/certificates/Screenshot 2026-04-14 150532.png" alt="Cisco Data Analytics Certificate">
+            </div>
+            <div class="certificate-details">
+                <div class="certificate-logo">
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+                <h2>Data Analytics Essentials</h2>
+                <p>Introduces core data analytics concepts, collection, preparation, exploratory analysis, and visualization techniques to extract insights[cite: 10].</p>
+                <div class="certificate-buttons">
+                    <a href="assets/certificates/Screenshot 2026-04-14 150532.png" target="_blank">View Certificate</a>
+                </div>
+            </div>
         </div>
 
     </div>
-
 </section>
 
 <!-- =========================
@@ -882,14 +527,7 @@ footer{
 ========================= -->
 
 <footer>
-
-    <p>
-
-        © 2026 RaviTeja |
-        Certificates Showcase
-
-    </p>
-
+    <p>© 2026 RaviTeja | Certificates Showcase</p>
 </footer>
 
 <script>
@@ -901,104 +539,20 @@ footer{
 window.addEventListener('scroll', reveal);
 
 function reveal(){
-
-    let reveals =
-    document.querySelectorAll('.reveal');
+    let reveals = document.querySelectorAll('.reveal');
 
     for(let i = 0; i < reveals.length; i++){
-
-        let windowHeight =
-        window.innerHeight;
-
-        let revealTop =
-        reveals[i].getBoundingClientRect().top;
-
-        let revealPoint = 120;
+        let windowHeight = window.innerHeight;
+        let revealTop = reveals[i].getBoundingClientRect().top;
+        let revealPoint = 100;
 
         if(revealTop < windowHeight - revealPoint){
-
             reveals[i].classList.add('active');
-
         }
-
     }
-
 }
 
 reveal();
-
-/* =========================
-   OPEN CERTIFICATE
-========================= */
-
-function toggleCertificate(card){
-
-    const allCards =
-    document.querySelectorAll('.certificate-card');
-
-    allCards.forEach(item => {
-
-        if(item !== card){
-
-            item.classList.remove('active');
-
-        }
-
-    });
-
-    card.classList.toggle('active');
-
-}
-
-/* =========================
-   3D EFFECT
-========================= */
-
-const cards =
-document.querySelectorAll('.certificate-card');
-
-cards.forEach(card => {
-
-    card.addEventListener('mousemove', (e) => {
-
-        let rect =
-        card.getBoundingClientRect();
-
-        let x =
-        e.clientX - rect.left;
-
-        let y =
-        e.clientY - rect.top;
-
-        let centerX =
-        rect.width / 2;
-
-        let centerY =
-        rect.height / 2;
-
-        let rotateX =
-        ((y - centerY) / 20);
-
-        let rotateY =
-        ((centerX - x) / 20);
-
-        card.style.transform = `
-            rotateX(${rotateX}deg)
-            rotateY(${rotateY}deg)
-        `;
-
-    });
-
-    card.addEventListener('mouseleave', () => {
-
-        card.style.transform = `
-            rotateX(0deg)
-            rotateY(0deg)
-        `;
-
-    });
-
-});
 
 </script>
 

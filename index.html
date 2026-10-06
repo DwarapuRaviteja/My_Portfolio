@@ -1,762 +1,1423 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
-
-    <title>Welcome to my profile ...</title>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dwarapu Ravi Teja | Portfolio</title>
 
     <!-- GOOGLE FONT -->
-    <link rel="preconnect"
-    href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin>
-
-    <link href=
-    "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- FONT AWESOME -->
-    <link rel="stylesheet"
-    href=
-    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
+    <style>
+        /* =========================
+           GLOBAL STYLES & RESET
+        ========================= */
+        :root {
+            --bg-deep: #030712;
+            --primary: #00f0ff;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-deep);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 240, 255, 0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* =========================
+           ANIMATED BACKGROUND BLOBS
+        ========================= */
+        .bg-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #0b0f19 0%, #030712 100%);
+        }
+
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.15;
+            animation: floatBlob 15s infinite alternate ease-in-out;
+        }
+
+        .blob-1 { background: var(--primary); top: -10%; left: -10%; }
+        .blob-2 { background: var(--secondary); bottom: -10%; right: -10%; animation-delay: -5s; }
+        .blob-3 { background: var(--accent); top: 40%; left: 30%; width: 400px; height: 400px; animation-delay: -10s; }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            50% { transform: translate(50px, 80px) scale(1.1) rotate(180deg); }
+            100% { transform: translate(-30px, 50px) scale(0.9) rotate(360deg); }
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(3, 7, 18, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s ease;
+        }
+
+        nav ul li a i {
+            color: var(--primary);
+            font-size: 12px;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+
+        /* =========================
+           HERO SECTION (Updated Profile Card)
+        ========================= */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 140px 5% 60px;
+            max-width: 1300px;
+            margin: auto;
+            gap: 50px;
+        }
+
+        .profile-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            box-shadow: var(--card-shadow);
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .profile-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 240, 255, 0.1);
+        }
+
+        .profile-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .profile-card h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .profile-card h3 {
+            font-size: 14px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .socials a {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .socials a:hover {
+            background: var(--primary);
+            color: var(--bg-deep);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.4);
+        }
+
+        .hero-right {
+            max-width: 600px;
+        }
+
+        .hero-right h2 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 30%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-right p {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .hero-right button {
+            padding: 16px 35px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: #030712;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.3);
+            transition: 0.3s ease;
+        }
+
+        .hero-right button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 240, 255, 0.5);
+        }
+
+        /* =========================
+           SECTION STYLING
+        ========================= */
+        section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 50px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--card-shadow);
+        }
+
+        section h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--text-main), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+        }
+
+        /* =========================
+           OBJECTIVE SECTION (Redesigned)
+        ========================= */
+        .objective-box {
+            position: relative;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(139, 92, 246, 0.05));
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 20px;
+            padding: 35px 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .objective-box::before {
+            content: '\f10d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            font-size: 30px;
+            color: rgba(0, 240, 255, 0.15);
+        }
+
+        .objective-text {
+            font-size: 16px;
+            line-height: 1.9;
+            color: var(--text-main);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* =========================
+           EDUCATION SECTION (Redesigned with Logos)
+        ========================= */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.07;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: none;
+        }
+
+        /* College / School Logo Watermarks via Wikimedia Commons/Official badges */
+        .card.btech::after {
+            background-image: url('https://upload.wikimedia.org/wikipedia/en/9/9f/Jawaharlal_Nehru_Technological_University%2C_Kakinada_Logo.png');
+        }
+
+        .card.navodaya::after {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1d/Jawahar_Navodaya_Vidyalaya_Logo.png');
+        }
+
+        .card:hover {
+            border-color: rgba(0, 240, 255, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 240, 255, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .card:hover::after {
+            opacity: 0.15;
+            transform: scale(1.1);
+        }
+
+        .card-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .card-icon-badge {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .card .institution {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .card .details-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--glass-border);
+            padding-top: 12px;
+            margin-top: 10px;
+        }
+
+        .card .details-row span strong {
+            color: var(--text-main);
+        }
+
+        /* =========================
+           SKILLS SECTION
+        ========================= */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            padding: 12px 22px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .skill i {
+            color: var(--primary);
+            font-size: 16px;
+        }
+
+        .skill:hover {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.2);
+        }
+
+        /* =========================
+           PROJECTS 3D GRID & MODAL
+        ========================= */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .project-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(3, 7, 18, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 240, 255, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 240, 255, 0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 160px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.08);
+        }
+
+        .project-title {
+            font-size: 18px;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .project-details {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card.active {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) !important;
+            width: 750px;
+            max-width: 90vw;
+            background: #080d1e;
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 240, 255, 0.2);
+            z-index: 999;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 30px;
+            padding: 35px;
+            cursor: default;
+            animation: modalPop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes modalPop {
+            0% { transform: translate(-50%, -50%) scale(0.85); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .project-card.active .project-image {
+            width: 320px;
+            height: 220px;
+            flex-shrink: 0;
+            margin-bottom: 0;
+            border-radius: 14px;
+        }
+
+        .project-card.active .project-title {
+            display: none;
+        }
+
+        .project-card.active .project-details {
+            display: block;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .project-card.active .project-details h2 {
+            color: var(--primary);
+            font-size: 26px;
+            margin-bottom: 12px;
+            border: none;
+            padding: 0;
+        }
+
+        .project-card.active .project-details p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-buttons a {
+            padding: 10px 22px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--bg-deep);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            font-weight: 600;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .project-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.4);
+        }
+
+        /* =========================
+           ACHIEVEMENTS & CONTACT
+        ========================= */
+        .achievement-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .achievement-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .achievement-box i {
+            font-size: 40px;
+            color: var(--primary);
+        }
+
+        .achievement-box h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .achievement-box:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            background: rgba(0, 240, 255, 0.03);
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.15);
+        }
+
+        .contact-box {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+
+        .contact-box p {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-box p i {
+            color: var(--primary);
+            width: 25px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 14px;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 80px;
+        }
+
+        /* =========================
+           RESPONSIVE DESIGN
+        ========================= */
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 130px;
+            }
+            .hero-right {
+                max-width: 100%;
+            }
+            .socials {
+                justify-content: center;
+            }
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                width: 95%;
+                padding: 12px 20px;
+            }
+            nav ul {
+                display: none;
+            }
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            .project-card.active {
+                flex-direction: column;
+                width: 92vw;
+                padding: 25px;
+                max-height: 85vh;
+                overflow-y: auto;
+            }
+            .project-card.active .project-image {
+                width: 100%;
+                height: 180px;
+            }
+            section {
+                padding: 30px 20px;
+            }
+        }
+
+/* =========================
+   EDUCATION MODAL & CARD STYLES
+========================= */
+.card {
+    cursor: pointer;
+}
+
+.edu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(3, 7, 18, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.edu-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Hidden details initially inside normal card view */
+.card .edu-details {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* Active / Expanded Modal State for Education Card */
+.card.active {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    width: 700px;
+    max-width: 90vw;
+    background: #080d1e;
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 240, 255, 0.2);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 35px;
+    cursor: default;
+    animation: modalPop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.card.active > div:first-child {
+    display: none; /* Hide default small header list view items when expanded */
+}
+
+.card.active .details-row {
+    display: none; /* Hide score row in standard position when expanded */
+}
+
+.card.active .edu-details {
+    display: block;
+    opacity: 1;
+    text-align: left;
+}
+
+.card.active .edu-details h2 {
+    color: var(--primary);
+    font-size: 26px;
+    margin-bottom: 12px;
+}
+
+.card.active .edu-details p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+}
+
+.edu-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.edu-buttons a {
+    padding: 10px 22px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: var(--bg-deep);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.edu-buttons a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 240, 255, 0.4);
+}
+
+
+/* =========================
+   TOP-RIGHT NOTIFICATION BANNER
+========================= */
+.notification-banner {
+    position: fixed;
+    top: 90px; /* Positioned right below the floating navbar */
+    right: 30px;
+    background: rgba(8, 13, 30, 0.9);
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 18px 22px;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 240, 255, 0.15);
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transform: translateX(120%); /* Hidden off-screen initially */
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+}
+
+.notification-banner.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.notif-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.notification-icon {
+    font-size: 22px;
+    color: var(--primary);
+    background: rgba(0, 240, 255, 0.1);
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+.notification-banner strong {
+    font-size: 14px;
+    color: var(--text-main);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.notification-banner p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.notification-banner p strong {
+    display: inline;
+    color: var(--primary);
+}
+
+.notif-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notif-btn {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--bg-deep);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.notif-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+.notif-close {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px;
+    transition: 0.3s;
+}
+
+.notif-close:hover {
+    color: var(--text-main);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .notification-banner {
+        right: 15px;
+        left: 15px;
+        top: 85px;
+        justify-content: space-between;
+    }
+}
+
+    </style>
 </head>
-
 <body>
 
-<!-- =========================
-     BACKGROUND
-========================= -->
-
-<div class="bg-animation">
-
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-
-</div>
-
-<!-- =========================
-     NAVBAR
-========================= -->
-
-<nav>
-
-    <div class="logo">
-        DWARAPU RAVI TEJA
+    <!-- BACKGROUND BLOBS -->
+    <div class="bg-mesh">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
 
-    <ul>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">DWARAPU RAVI TEJA</div>
+        <ul>
+            <li><a href="#about"><i class="fa-solid fa-user"></i> OBJECTIVE</a></li>
+            <li><a href="#education"><i class="fa-solid fa-graduation-cap"></i> EDUCATION</a></li>
+            <li><a href="#skills"><i class="fa-solid fa-code"></i> SKILLS</a></li>
+            <li><a href="#projects"><i class="fa-solid fa-laptop-code"></i> PROJECTS</a></li>
+            <li><a href="#certifications"><i class="fa-solid fa-award"></i> ACHIEVEMENTS</a></li>
+            <li><a href="#contact"><i class="fa-solid fa-envelope"></i> CONTACT</a></li>
+        </ul>
+    </nav>
 
-        <li>
-            <a href="#about">
+    <!-- FLOATING NOTIFICATION -->
+    <div id="latest-notification" class="notification-banner">
+        <div class="notif-content">
+            <i class="fa-solid fa-bell notification-icon"></i>
+            <div>
+                <strong>New Release!</strong>
+                <p>Check out my latest app: <strong>Ideal Portal Analyzer</strong></p>
+            </div>
+        </div>
+        <div class="notif-actions">
+            <a href="https://cgpa-analyzer-88x2.onrender.com" target="_blank" class="notif-btn">Visit App</a>
+            <button onclick="closeNotification()" class="notif-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </div>
 
-                <i class="fa-solid fa-user"></i>
-
-                OBJECTIVE
-
-            </a>
-        </li>
-
-        <li>
-            <a href="#education">
-
-                <i class="fa-solid fa-graduation-cap"></i>
-
-                EDUCATION
-
-            </a>
-        </li>
-
-        <li>
-            <a href="#skills">
-
-                <i class="fa-solid fa-code"></i>
-
-                SKILLS
-
-            </a>
-        </li>
-
-        <li>
-            <a href="#projects">
-
-                <i class="fa-solid fa-laptop-code"></i>
-
-                PROJECTS
-
-            </a>
-        </li>
-
-        <li>
-            <a href="#certifications">
-
-                <i class="fa-solid fa-award"></i>
-
-                ACHIEVEMENTS
-
-            </a>
-        </li>
-
-        <li>
-            <a href="#contact">
-
-                <i class="fa-solid fa-envelope"></i>
-
-                CONTACT
-
-            </a>
-        </li>
-
-    </ul>
-
-</nav>
-
-<!-- =========================
-     HERO SECTION
-========================= -->
-
-<section class="hero">
-
-    <!-- PROFILE CARD -->
-
-    <div class="profile-card reveal">
-
-        <img src="assets/profile.jpg"
-        alt="profile">
-
-        <h1>RAVI TEJA</h1>
-
-        <h3>
-            Student | Developer | Fast Learner
-        </h3>
-
-        <p>
-
-            Passionate about coding,
-            AI tools, modern web development,
-            creative UI/UX and innovative projects,
-            learning by building projects.
-
-        </p>
-
-        <!-- SOCIAL LINKS -->
-
-        <div class="socials">
-
-            <a href=
-            "https://github.com/DwarapuRaviteja"
-            target="_blank">
-
-                <i class="fab fa-github"></i>
-
-            </a>
-
-            <a href=
-            "https://www.linkedin.com/in/raviteja-dwarapu-37b9b7323/"
-            target="_blank">
-
-                <i class="fab fa-linkedin"></i>
-
-            </a>
-
-            <a href=
-            "https://www.instagram.com/raviteja.off/"
-            target="_blank">
-
-                <i class="fab fa-instagram"></i>
-
-            </a>
-
-            <a href=
-            "https://www.hackerrank.com/profile/236K1A0581"
-            target="_blank">
-
-                <i class="fab fa-hackerrank"></i>
-
-            </a>
-
+    <!-- HERO SECTION -->
+    <section class="hero" style="border: none; background: transparent; box-shadow: none; margin: 0 auto;">
+        <div class="profile-card">
+            <img src="assets/profile.jpg" alt="profile">
+            <h1>RAVI TEJA</h1>
+            <h3>Student | Developer | Fast Learner</h3>
+            <p>Passionate about coding, AI tools, modern web development, creative UI/UX and innovative projects, learning by building projects.</p>
+            <div class="socials">
+                <a href="https://github.com/DwarapuRaviteja" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/raviteja-dwarapu-37b9b7323/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/raviteja.off/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.hackerrank.com/profile/236K1A0581" target="_blank"><i class="fab fa-hackerrank"></i></a>
+            </div>
         </div>
 
-    </div>
+        <div class="hero-right">
+            <h2>Aspiring full stack developer with innovative ideas.</h2>
+            <p>Designing interactive applications with smooth animations, building scalable websites, attractive UI and innovative technology solutions.</p>
+            <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">Explore Projects</button>
+        </div>
+    </section>
 
-    <!-- HERO RIGHT -->
+    <!-- ABOUT SECTION (Objective Redesigned) -->
+    <section id="about">
+        <h2>Objective</h2>
+        <div class="objective-box">
+            <p class="objective-text">
+                I am a passionate and fast-learning Full Stack Developer with a strong interest in building modern, user-focused web and mobile applications. Skilled in HTML, CSS, JavaScript, Python, Flutter, MySQL, and UI/UX design, I have hands-on experience developing innovative projects like Career Path, Advanced CGPA Calculator, Wedding Explorer, and AI-based platforms. I am actively seeking opportunities to apply my problem-solving skills, creativity, and continuous learning mindset to develop scalable, impactful, and visually engaging digital solutions.
+            </p>
+        </div>
+    </section>
 
-    <div class="hero-right reveal">
-
-        <h2>
-
-            Aspiring full stack developer
-            with innovative ideas.
-
-        </h2>
-
-        <p>
-
-            Designing interactive applications
-            with smooth animations,
-            building scalable websites,
-            attractive UI and innovative
-            technology solutions.
-
-        </p>
-
-        <button onclick="scrollToProjects()">
-
-            Explore Projects
-
-        </button>
-
-    </div>
-
-</section>
-
-<!-- =========================
-     ABOUT
+    <!-- EDUCATION SECTION (Redesigned with Logos) -->
+    <!-- =========================
+     EDUCATION SECTION
 ========================= -->
-
-<section id="about"
-class="glass reveal">
-
-    <h2>Objective</h2>
-
-    <p>
-
-        Passionate and fast-learning Full Stack Developer with strong interest in building modern, user-focused web and mobile applications. Skilled in HTML, CSS, JavaScript, Python, Flutter, MySQL, and UI/UX design, with hands-on experience developing innovative projects like Career Path, Advanced CGPA Calculator, Wedding Explorer, and AI-based platforms. Seeking opportunities to apply problem-solving skills, creativity, and continuous learning mindset to develop scalable, impactful, and visually engaging digital solutions.
-
-    </p>
-
-</section>
-
-<!-- =========================
-     EDUCATION
-========================= -->
-
-<section id="education"
-class="glass reveal">
-
+<section id="education">
     <h2>Education</h2>
 
+    <!-- Blur Overlay for Education Modal -->
+    <div class="edu-overlay" onclick="closeAllEducation()"></div>
+
     <div class="card-grid">
+        <!-- B.Tech Card -->
+        <div class="card btech" onclick="toggleEducation(event, this)">
+            <div>
+                <div class="card-header-flex">
+                    <div>
+                        <h3>B.Tech</h3>
+                        <div class="institution">COMPUTER SCIENCE AND ENGINEERING</div>
+                    </div>
+                    <div class="card-icon-badge"><i class="fa-solid fa-graduation-cap"></i></div>
+                </div>
+                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 15px;">at Ideal Institute Of Technology</p>
+            </div>
+            
+            <div class="details-row">
+                <span>Score: <strong>76%</strong></span>
+                <span><strong>2023 - 2027</strong></span>
+            </div>
 
-        <div class="card">
-
-            <h3>B.Tech</h3>
-
-            <p>
-                COMPUTER SCIENCE
-                AND ENGINEERING
-            </p>
-
-            <p>
-                at IDEAL INSTITUTE OF TECHNOLOGY
-            </p>
-
-            <p>
-                PERCENTAGE : 76%
-            </p>
-
-            <p>
-                2023 - 2027
-            </p>
-
+            <!-- Hidden Details for Modal View -->
+            <div class="edu-details">
+                <h2>Ideal Institute of Technology</h2>
+                <p>
+                    Currently pursuing a Bachelor of Technology in Computer Science and Engineering at Ideal Institute of Technology, Kakinada. Focused on core software development, data structures, algorithms, modern web technologies, and practical project-based learning.
+                </p>
+                <div class="edu-buttons">
+                    <a href="https://www.idealtech.edu.in/website/home.html" target="_blank" onclick="event.stopPropagation()">
+                        <i class="fa-solid fa-globe"></i> Visit College Website
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <div class="card">
+        <!-- Intermediate Card -->
+        <div class="card navodaya" onclick="toggleEducation(event, this)">
+            <div>
+                <div class="card-header-flex">
+                    <div>
+                        <h3>Intermediate</h3>
+                        <div class="institution">MPC (Maths, Physics, Chemistry)</div>
+                    </div>
+                    <div class="card-icon-badge"><i class="fa-solid fa-school"></i></div>
+                </div>
+                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 15px;">at Jawahar Navodaya Vidyalaya</p>
+            </div>
 
-            <h3>Intermediate</h3>
+            <div class="details-row">
+                <span>Score: <strong>68%</strong></span>
+                <span><strong>2021 - 2023</strong></span>
+            </div>
 
-            <p>MPC</p>
-
-            <p>
-                at JAWAHAR NAVODAYA VIDYALAYA
-            </p>
-
-            <p>
-                PERCENTAGE : 68%
-            </p>
-
-            <p>
-                2021 - 2023
-            </p>
-
+            <!-- Hidden Details for Modal View -->
+            <div class="edu-details">
+                <h2>Jawahar Navodaya Vidyalaya</h2>
+                <p>
+                    Completed Intermediate education under the MPC stream at Jawahar Navodaya Vidyalaya, Kommadi, Visakhapatnam. Built a strong analytical foundation in mathematics, physical sciences, and disciplined academic problem-solving.
+                </p>
+                <div class="edu-buttons">
+                    <a href="https://navodaya.gov.in/nvs-school/ap/visakhapatnam" target="_blank" onclick="event.stopPropagation()">
+                        <i class="fa-solid fa-globe"></i> Visit School Website
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <div class="card">
+        <!-- 10th Card -->
+        <div class="card navodaya" onclick="toggleEducation(event, this)">
+            <div>
+                <div class="card-header-flex">
+                    <div>
+                        <h3>10TH (SSC)</h3>
+                        <div class="institution">Secondary School Education</div>
+                    </div>
+                    <div class="card-icon-badge"><i class="fa-solid fa-book"></i></div>
+                </div>
+                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 15px;">at Jawahar Navodaya Vidyalaya</p>
+            </div>
 
-            <h3>10TH</h3>
+            <div class="details-row">
+                <span>Score: <strong>72%</strong></span>
+                <span><strong>2020 - 2021</strong></span>
+            </div>
 
-            <p>SSC</p>
-
-            <p>
-                at JAWAHAR NAVODAYA VIDYALAYA
-            </p>
-
-            <p>
-                PERCENTAGE : 72%
-            </p>
-
-            <p>
-                2020 - 2021
-            </p>
-
+            <!-- Hidden Details for Modal View -->
+            <div class="edu-details">
+                <h2>Jawahar Navodaya Vidyalaya</h2>
+                <p>
+                    Completed Secondary School Certificate (SSC) education at Jawahar Navodaya Vidyalaya, Kommadi, Visakhapatnam. Developed core academic excellence and active participation in co-curricular activities.
+                </p>
+                <div class="edu-buttons">
+                    <a href="https://navodaya.gov.in/nvs-school/ap/visakhapatnam" target="_blank" onclick="event.stopPropagation()">
+                        <i class="fa-solid fa-globe"></i> Visit School Website
+                    </a>
+                </div>
+            </div>
         </div>
-
     </div>
-
 </section>
 
-<!-- =========================
-     SKILLS
-========================= -->
-
-<section id="skills"
-class="glass reveal">
-
-    <h2>Skills</h2>
-
-    <div class="skills-container">
-
-    <div class="skill"><i class="fa-brands fa-html5"></i> HTML</div>
-    <div class="skill"><i class="fa-brands fa-css3-alt"></i> CSS</div>
-    <div class="skill"><i class="fa-brands fa-js"></i> JavaScript</div>
-    <div class="skill"><i class="fa-brands fa-react"></i> React.js</div>
-
-    <div class="skill"><i class="fa-brands fa-node-js"></i> Node.js</div>
-    <div class="skill"><i class="fa-solid fa-server"></i> Express.js</div>
-
-    <div class="skill"><i class="fa-brands fa-python"></i> Python</div>
-    <div class="skill"><i class="fa-solid fa-code"></i> C Programming</div>
-
-    <div class="skill"><i class="fa-brands fa-flutter"></i> Flutter</div>
-    <div class="skill"><i class="fa-solid fa-mobile-screen"></i> Mobile Development</div>
-
-    <div class="skill"><i class="fa-solid fa-database"></i> MySQL</div>
-    <div class="skill"><i class="fa-solid fa-leaf"></i> MongoDB</div>
-
-    <div class="skill"><i class="fa-brands fa-git-alt"></i> Git</div>
-    <div class="skill"><i class="fa-brands fa-github"></i> GitHub</div>
-
-    <div class="skill"><i class="fa-solid fa-server"></i> REST APIs</div>
-    <div class="skill"><i class="fa-solid fa-cloud"></i> Cloud Computing</div>
-
-    <div class="skill"><i class="fa-solid fa-robot"></i> Generative AI</div>
-
-    <div class="skill"><i class="fa-solid fa-palette"></i> UI/UX Design</div>
-
-    <div class="skill"><i class="fa-solid fa-laptop-code"></i> Web Development</div>
-    <div class="skill"><i class="fa-solid fa-globe"></i> Responsive Design</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-     PROJECTS
-========================= -->
-
-<section id="projects"
-class="glass reveal">
-
-    <h2>Projects</h2>
-
-    <div class="project-showcase">
-
-        <!-- PROJECT NEW -->
-
-        <div class="project-card"
-        onclick="event.stopPropagation(); toggleProject(this)">
-
-            <div class="project-image">
-
-                <img src="assets/codeplatform.png"
-                alt="codeplatform Project">
-
-                <h3 class="project-title">
-
-                    CodePlatform
-
-                </h3>
-
-            </div>
-
-            <div class="project-details">
-
-                <h2>
-                    CodePlatform
-                </h2>
-
-                <p>
-
-                    CodePlatform is an AI-powered web platform for learning and building software projects. Users can create applications by simply describing their ideas in natural language. It provides instant code generation with clear explanations for better understanding. The platform includes a live coding playground to write, test, and modify code in real time. It enables users to learn programming by building practical, real-world projects.
-
-
-                </p>
-
-                <div class="project-buttons">
-
-                    <a href=
-                    "https://code-platform-mu.vercel.app/"
-                    target="_blank">
-
-                        <i class="fa-solid fa-globe"></i>
-
-                        Live Website
-
-                    </a>
-
-                    <a href=
-                    "https://github.com/DwarapuRaviteja/CodePlatform"
-                    target="_blank">
-
-                        <i class="fa-brands fa-github"></i>
-
-                        Source Code
-
-                    </a>
-
-                </div>
-
-            </div>
-
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <div class="skill"><i class="fa-brands fa-html5"></i> HTML</div>
+            <div class="skill"><i class="fa-brands fa-css3-alt"></i> CSS</div>
+            <div class="skill"><i class="fa-brands fa-js"></i> JavaScript</div>
+            <div class="skill"><i class="fa-brands fa-react"></i> React.js</div>
+            <div class="skill"><i class="fa-brands fa-node-js"></i> Node.js</div>
+            <div class="skill"><i class="fa-solid fa-server"></i> Express.js</div>
+            <div class="skill"><i class="fa-brands fa-python"></i> Python</div>
+            <div class="skill"><i class="fa-solid fa-code"></i> C Programming</div>
+            <div class="skill"><i class="fa-brands fa-flutter"></i> Flutter</div>
+            <div class="skill"><i class="fa-solid fa-mobile-screen"></i> Mobile Development</div>
+            <div class="skill"><i class="fa-solid fa-database"></i> MySQL</div>
+            <div class="skill"><i class="fa-solid fa-leaf"></i> MongoDB</div>
+            <div class="skill"><i class="fa-brands fa-git-alt"></i> Git</div>
+            <div class="skill"><i class="fa-brands fa-github"></i> GitHub</div>
+            <div class="skill"><i class="fa-solid fa-server"></i> REST APIs</div>
+            <div class="skill"><i class="fa-solid fa-cloud"></i> Cloud Computing</div>
+            <div class="skill"><i class="fa-solid fa-robot"></i> Generative AI</div>
+            <div class="skill"><i class="fa-solid fa-palette"></i> UI/UX Design</div>
+            <div class="skill"><i class="fa-solid fa-laptop-code"></i> Web Development</div>
+            <div class="skill"><i class="fa-solid fa-globe"></i> Responsive Design</div>
         </div>
+    </section>
 
-        <!-- PROJECT 1 -->
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+        <h2>Projects</h2>
 
-        <div class="project-card"
-        onclick="event.stopPropagation(); toggleProject(this)">
+        <!-- Blur Overlay -->
+        <div class="project-overlay" onclick="closeAllProjects()"></div>
 
-            <div class="project-image">
-
-                <img src="assets/hospital.png"
-                alt="Hospital Project">
-
-                <h3 class="project-title">
-
-                    Hospital Management System
-
-                </h3>
-
-            </div>
-
-            <div class="project-details">
-
-                <h2>
-                    Hospital Management System
-                </h2>
-
-                <p>
-
-                    A modern hospital management
-                    platform for patient records,
-                    appointments, 
-                    and medical reports. and also managed by admin for approve appointments , managing dates and asssigning doctors.
-
-                </p>
-
-                <div class="project-buttons">
-
-                    <a href=
-                    "https://hospital-management-system-1rnq.onrender.com"
-                    target="_blank">
-
-                        <i class="fa-solid fa-globe"></i>
-
-                        Live Website
-
-                    </a>
-
-                    <a href=
-                    "https://github.com/DwarapuRaviteja/Hospital-management-system"
-                    target="_blank">
-
-                        <i class="fa-brands fa-github"></i>
-
-                        Source Code
-
-                    </a>
-
+        <div class="project-grid">
+            <!-- PROJECT 1 -->
+            <div class="project-card" onclick="toggleProject(event, this)">
+                <div class="project-image">
+                    <img src="assets/codeplatform.png" alt="codeplatform">
                 </div>
-
-            </div>
-
-        </div>
-
-        <!-- PROJECT 2 -->
-
-        <div class="project-card"
-        onclick="event.stopPropagation(); toggleProject(this)">
-
-            <div class="project-image">
-
-                <img src="assets/careerpath.png"
-                alt="CareerPath">
-
-                <h3 class="project-title">
-
-                    Career Path
-
-                </h3>
-
-            </div>
-
-            <div class="project-details">
-
-                <h2>Career Path</h2>
-
-                <p>
-
-                    AI-powered career and opportunity platform. Search and Apply various internship and job oppurtunities accross many companies.
-
-                </p>
-
-                <div class="project-buttons">
-
-                    <a href=
-                    "https://careerpath-qutl.onrender.com"
-                    target="_blank">
-
-                        <i class="fa-solid fa-globe"></i>
-
-                        Live Website
-
-                    </a>
-
-                    <a href=
-                    "https://github.com/DwarapuRaviteja/CareerPath"
-                    target="_blank">
-
-                        <i class="fa-brands fa-github"></i>
-
-                        Source Code
-
-                    </a>
-
+                <h3 class="project-title">CodePlatform</h3>
+                <div class="project-details">
+                    <h2>CodePlatform</h2>
+                    <p>CodePlatform is an AI-powered web platform for learning and building software projects. Users can create applications by simply describing their ideas in natural language with instant code generation and live playgrounds.</p>
+                    <div class="project-buttons">
+                        <a href="https://code-platform-mu.vercel.app/" target="_blank"><i class="fa-solid fa-globe"></i> Live Website</a>
+                        <a href="https://github.com/DwarapuRaviteja/CodePlatform" target="_blank"><i class="fa-brands fa-github"></i> Source Code</a>
+                    </div>
                 </div>
-
             </div>
 
-        </div>
-
-        <!-- PROJECT 3 -->
-
-        <div class="project-card"
-        onclick="event.stopPropagation(); toggleProject(this)">
-
-            <div class="project-image">
-
-                <img src="assets/travelchat.png"
-                alt="travelchat">
-
-                <h3 class="project-title">
-
-                    Travel chatBot
-
-                </h3>
-
-            </div>
-
-            <div class="project-details">
-
-                <h2>Travel chatBot</h2>
-
-                <p>
-
-                    TravelChatbot is an AI-powered assistant that helps users plan trips and explore destinations. It provides personalized travel recommendations, itineraries, and essential travel information. Users can interact through natural conversations and receive instant responses. The chatbot makes travel planning simple, fast, and user-friendly.
-
-                </p>
-
-                <div class="project-buttons">
-
-                    <a href=
-                    "https://travel-chatbot-2-ckvo.onrender.com/"
-                    target="_blank">
-
-                        <i class="fa-solid fa-globe"></i>
-
-                        Live Website
-
-                    </a>
-
-                    <a href=
-                    "https://github.com/DwarapuRaviteja/Travel_chatbot"
-                    target="_blank">
-
-                        <i class="fa-brands fa-github"></i>
-
-                        Source Code
-
-                    </a>
-
+            <!-- PROJECT 2 -->
+            <div class="project-card" onclick="toggleProject(event, this)">
+                <div class="project-image">
+                    <img src="assets/hospital.png" alt="Hospital Project">
                 </div>
-
-            </div>
-
-        </div>
-
-<!-- PROJECT 4 -->
-
-        <div class="project-card"
-        onclick="event.stopPropagation(); toggleProject(this)">
-
-            <div class="project-image">
-
-                <img src="assets/cgpa.png"
-                alt="cgpa">
-
-                <h3 class="project-title">
-
-                    Advanced cgpa Calculator
-
-                </h3>
-
-            </div>
-
-            <div class="project-details">
-
-                <h2>Advanced cgpa Calculator</h2>
-
-                <p>
-
-                    An advanced academic calculator designed to compute CGPA, percentage, grades, and performance analytics with a clean user-friendly interface and accurate result generation.upload your marklist image get the score.
-
-                </p>
-
-                <div class="project-buttons">
-
-                    <a href=
-                    "https://advanced-cgpa-calculator.onrender.com"
-                    target="_blank">
-
-                        <i class="fa-solid fa-globe"></i>
-
-                        Live Website
-
-                    </a>
-
-                    <a href=
-                    "https://github.com/DwarapuRaviteja/Advanced-CGPA-Calculator"
-                    target="_blank">
-
-                        <i class="fa-brands fa-github"></i>
-
-                        Source Code
-
-                    </a>
-
+                <h3 class="project-title">Hospital Management System</h3>
+                <div class="project-details">
+                    <h2>Hospital Management System</h2>
+                    <p>A modern hospital management platform for patient records, appointments, and medical reports. Managed by admin for approving appointments, scheduling dates, and assigning doctors efficiently.</p>
+                    <div class="project-buttons">
+                        <a href="https://hospital-management-system-1rnq.onrender.com" target="_blank"><i class="fa-solid fa-globe"></i> Live Website</a>
+                        <a href="https://github.com/DwarapuRaviteja/Hospital-management-system" target="_blank"><i class="fa-brands fa-github"></i> Source Code</a>
+                    </div>
                 </div>
-
             </div>
 
+            <!-- PROJECT 3 -->
+            <div class="project-card" onclick="toggleProject(event, this)">
+                <div class="project-image">
+                    <img src="assets/careerpath.png" alt="CareerPath">
+                </div>
+                <h3 class="project-title">Career Path</h3>
+                <div class="project-details">
+                    <h2>Career Path</h2>
+                    <p>AI-powered career and opportunity platform. Search and apply for various internship and job opportunities across multiple companies seamlessly.</p>
+                    <div class="project-buttons">
+                        <a href="https://careerpath-qutl.onrender.com" target="_blank"><i class="fa-solid fa-globe"></i> Live Website</a>
+                        <a href="https://github.com/DwarapuRaviteja/CareerPath" target="_blank"><i class="fa-brands fa-github"></i> Source Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 4 -->
+            <div class="project-card" onclick="toggleProject(event, this)">
+                <div class="project-image">
+                    <img src="assets/travelchat.png" alt="travelchat">
+                </div>
+                <h3 class="project-title">Travel chatbot</h3>
+                <div class="project-details">
+                    <h2>Travel chatbot</h2>
+                    <p>TravelChatbot is an AI-powered assistant that helps users plan trips and explore destinations with personalized travel recommendations and itineraries through natural conversations.</p>
+                    <div class="project-buttons">
+                        <a href="https://travel-chatbot-2-ckvo.onrender.com/" target="_blank"><i class="fa-solid fa-globe"></i> Live Website</a>
+                        <a href="https://github.com/DwarapuRaviteja/Travel_chatbot" target="_blank"><i class="fa-brands fa-github"></i> Source Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 5 -->
+            <div class="project-card" onclick="toggleProject(event, this)">
+                <div class="project-image">
+                    <img src="assets/cgpa.png" alt="cgpa">
+                </div>
+                <h3 class="project-title">Advanced CGPA Calculator</h3>
+                <div class="project-details">
+                    <h2>Advanced CGPA Calculator</h2>
+                    <p>An advanced academic calculator designed to compute CGPA, percentage, grades, and performance analytics with OCR marklist image scanning capabilities.</p>
+                    <div class="project-buttons">
+                        <a href="https://advanced-cgpa-calculator.onrender.com" target="_blank"><i class="fa-solid fa-globe"></i> Live Website</a>
+                        <a href="https://github.com/DwarapuRaviteja/Advanced-CGPA-Calculator" target="_blank"><i class="fa-brands fa-github"></i> Source Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 6: Ideal Portal Analyzer -->
+        <div class="project-card" onclick="toggleProject(event, this)">
+            <div class="project-image">
+                <img src="assets/idealportal.png" alt="Ideal Portal Analyzer">
+            </div>
+            <h3 class="project-title">Ideal Portal Analyzer</h3>
+            <div class="project-details">
+                <h2>Ideal Portal Analyzer</h2>
+                <p>
+                    Ideal Portal Analyzer is an exclusive portal designed specifically for Ideal college students. Students can simply log in to check their scores, calculate CGPA and SGPA effortlessly, and download detailed academic reports with a user-friendly interface.
+                </p>
+                <div class="project-buttons">
+                    <a href="https://cgpa-analyzer-88x2.onrender.com" target="_blank">
+                        <i class="fa-solid fa-globe"></i> Live Website
+                    </a>
+                </div>
+            </div>
         </div>
+        
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS SECTION -->
+    <section id="certifications">
+        <h2>Achievements</h2>
+        <div class="achievement-container">
+            <a href="certificates.html" target="_blank" class="achievement-box">
+                <i class="fa-solid fa-certificate"></i>
+                <h3>Certificates</h3>
+            </a>
+            <a href="badges.html" target="_blank" class="achievement-box">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h3>Badges</h3>
+            </a>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-box">
+            <p><i class="fa-solid fa-envelope"></i> ravitejadwarapu9@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> +91 7036805660</p>
+            <p><i class="fa-solid fa-location-dot"></i> Andhra Pradesh, India</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 RaviTeja's Portfolio | Built with Modern Glass UI</p>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        /* Project Modal Toggle */
+        function toggleProject(event, card) {
+            event.stopPropagation();
+            const isActive = card.classList.contains('active');
+            closeAllProjects();
+
+            if (!isActive) {
+                card.classList.add('active');
+                document.querySelector('.project-overlay').classList.add('active');
+            }
+        }
+
+        function closeAllProjects() {
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => card.classList.remove('active'));
+            const overlay = document.querySelector('.project-overlay');
+            if (overlay) {
+                overlay.classList.remove('active');
+            }
+        }
+
+        /* Close modal on ESC key */
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeAllProjects();
+            }
+        });
 
 
-    </div>
+        /* =========================
+   EDUCATION MODAL TOGGLE SCRIPT
+========================= */
+function toggleEducation(event, card) {
+    event.stopPropagation();
+    const isActive = card.classList.contains('active');
+    closeAllEducation();
+    closeAllProjects(); // Close project modals if open
 
-</section>
+    if (!isActive) {
+        card.classList.add('active');
+        document.querySelector('.edu-overlay').classList.add('active');
+    }
+}
 
-<!-- =========================
-     CERTIFICATIONS
-========================= -->
+function closeAllEducation() {
+    const cards = document.querySelectorAll('#education .card');
+    cards.forEach(card => card.classList.remove('active'));
+    const overlay = document.querySelector('.edu-overlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+    }
+}
 
-<section id="certifications"
-class="glass reveal">
+// Update your global ESC key listener to include closing education cards too:
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeAllProjects();
+        closeAllEducation();
+    }
+});
 
-    <h2>Achievements</h2>
 
-    <div class="achievement-container">
+/* =========================
+   NOTIFICATION AUTO-POPUP SCRIPT
+========================= */
+window.addEventListener('DOMContentLoaded', () => {
+    const notification = document.getElementById('latest-notification');
+    
+    // Show notification shortly after page loads
+    setTimeout(() => {
+        if (notification) {
+            notification.classList.add('show');
+        }
+    }, 1000);
 
-        <!-- CERTIFICATES -->
+    // Automatically hide after 10 seconds (10000 milliseconds)
+    setTimeout(() => {
+        closeNotification();
+    }, 11000);
+});
 
-        <a href="certificates.html"
-        target="_blank"
-        class="achievement-box">
+function closeNotification() {
+    const notification = document.getElementById('latest-notification');
+    if (notification) {
+        notification.classList.remove('show');
+    }
+}
 
-            <i class=
-            "fa-solid fa-certificate"></i>
-
-            <h3>Certificates</h3>
-
-        </a>
-
-        <!-- BADGES -->
-
-        <a href="badges.html"
-        target="_blank"
-        class="achievement-box">
-
-            <i class=
-            "fa-solid fa-shield-halved"></i>
-
-            <h3>Badges</h3>
-
-        </a>
-
-    </div>
-
-</section>
-
-<!-- =========================
-     CONTACT
-========================= -->
-
-<section id="contact"
-class="glass reveal">
-
-    <h2>Contact</h2>
-
-    <div class="contact-box">
-
-        <p>
-            Email :
-            ravitejadwarapu9@gmail.com
-        </p>
-
-        <p>
-            Phone :
-            +91 7036805660
-        </p>
-
-        <p>
-            Location :
-            Andhra Pradesh, India
-        </p>
-
-    </div>
-
-</section>
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-    <p>
-
-        © 2026 RaviTeja's Portfolio 
-
-    </p>
-
-</footer>
-
-<!-- =========================
-     JS FILE
-========================= -->
-
-<script src="script.js"></script>
-
+    </script>
 </body>
 </html>
